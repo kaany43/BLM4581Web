@@ -1,0 +1,17 @@
+﻿@page
+@model BLM4581Web.Pages.SelamModel
+@{
+	ViewData["Title"] = "Selam";
+}
+
+<h1>@Model.Selamlama @Model.Ad!</h1>
+<p>Bugün: @Model.Tarih</p>
+ 
+@if (Model.HaftaSonu)
+{
+    <p class="text-success">İyi hafta sonları!</p>
+}
+else
+{
+    <p>Hafta sonuna @Model.KalanGun gün kaldı.</p>
+}

@@ -1,0 +1,51 @@
+﻿@page
+@model BLM4581Web.Pages.OgrenciKayitModel
+@{
+    ViewData["Title"] = "Öğrenci Kayıt";
+}
+ 
+<h1>Öğrenci Kayıt Formu</h1>
+ 
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+ 
+    <div class="mb-3">
+        <label asp-for="AdSoyad" class="form-label"></label>
+        <input asp-for="AdSoyad" class="form-control" />
+        <span asp-validation-for="AdSoyad" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="OgrenciNo" class="form-label"></label>
+        <input asp-for="OgrenciNo" class="form-control" />
+        <span asp-validation-for="OgrenciNo" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Eposta" class="form-label"></label>
+        <input asp-for="Eposta" class="form-control" />
+        <span asp-validation-for="Eposta" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Yas" class="form-label"></label>
+        <input asp-for="Yas" class="form-control" />
+        <span asp-validation-for="Yas" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Bolum" class="form-label"></label>
+        <select asp-for="Bolum" asp-items="Model.Bolumler"
+                class="form-select">
+            <option value="">-- Bölüm seçiniz --</option>
+        </select>
+        <span asp-validation-for="Bolum" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
+@if (Model.Kaydedildi)
+{
+    <div class="alert alert-success mt-3">
+        <strong>Kayıt alındı:</strong> @Model.AdSoyad (@Model.OgrenciNo) - @Model.Bolum
+    </div>
+}
+ 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

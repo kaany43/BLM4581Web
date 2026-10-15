@@ -1,0 +1,40 @@
+﻿@page
+@model BLM4581Web.Pages.NotHesaplaModel
+@{
+    ViewData["Title"] = "Not Hesapla";
+}
+ 
+<h1>Not Ortalaması Hesaplama</h1>
+ 
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="OgrenciAdi" class="form-label"></label>
+        <input asp-for="OgrenciAdi" class="form-control" />
+        <span asp-validation-for="OgrenciAdi" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Vize" class="form-label"></label>
+        <input asp-for="Vize" class="form-control" />
+        <span asp-validation-for="Vize" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Final" class="form-label"></label>
+        <input asp-for="Final" class="form-control" />
+        <span asp-validation-for="Final" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Hesapla</button>
+</form>
+
+@if (Model.HarfNotu != "")
+{
+    var renk = Model.Gecti ? "alert-success" : "alert-danger";
+    <div class="alert @renk mt-3">
+        @Model.OgrenciAdi - Ortalama: @Model.Ortalama.ToString("F1")
+        - Harf notu: <strong>@Model.HarfNotu</strong>
+        - @(Model.Gecti ? "GEÇTİ" : "KALDI")
+    </div>
+}
+ 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

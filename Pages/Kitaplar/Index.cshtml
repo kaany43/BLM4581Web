@@ -1,0 +1,65 @@
+﻿@page
+@model BLM4581Web.Pages.Kitaplar.IndexModel
+@{
+    ViewData["Title"] = "Kitaplar";
+}
+
+<h1>Kitaplar</h1>
+
+@if (TempData["Mesaj"] != null)
+{
+    <div class="alert alert-success">@TempData["Mesaj"]</div>
+}
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-4">
+        <input asp-for="Arama" class="form-control"
+               placeholder="Kitap adı veya yazar" />
+    </div>
+    <div class="col-md-3">
+        <select asp-for="KategoriId" asp-items="Model.Kategoriler"
+                class="form-select">
+            <option value="">Tüm kategoriler</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <select asp-for="Siralama" class="form-select">
+            <option value="ad">Ada göre</option>
+            <option value="yil">Basım yılına göre</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-secondary w-100">Listele</button>
+    </div>
+</form>
+
+
+<a asp-page="Ekle" class="btn btn-primary mb-3">Yeni Kitap</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Kitap Adı</th>
+            <th>Yazar</th>
+            <th>Kategori</th>
+            <th>Basım Yılı</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kitap in Model.Kitaplar)
+        {
+            <tr>
+                <td>@kitap.Ad</td>
+                <td>@kitap.Yazar</td>
+                <td>@kitap.Kategori?.Ad</td>
+                <td>@kitap.BasimYili</td>
+                <td>
+                    <a asp-page="Detay" asp-route-id="@kitap.Id">Detay</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

@@ -1,0 +1,17 @@
+﻿@page
+@model BLM4581Web.Pages.DersBilgiModel
+@{
+	ViewData["Title"] = "Ders Bilgi";
+}
+
+<h1>@Model.DersKodu - @Model.DersAdi</h1>
+<p>Dönem: <strong>@Model.Donem</strong></p>
+<p>Sayfanın oluşturulduğu saat: @DateTime.Now.ToString("HH:mm:ss")</p>
+ 
+<h3>Konular (@Model.Konular.Count adet)</h3>
+<ol>
+    @foreach (var konu in Model.Konular)
+    {
+        <li>@konu</li>
+    }
+</ol>

@@ -1,26 +1,30 @@
-var builder = WebApplication.CreateBuilder(args);
+using BLM4581Web.Data;
+using Microsoft.EntityFrameworkCore;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+// Servisler Build() öncesinde eklenmeli.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<KitapDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("KitapDb")
+    )
+);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Middleware ve endpoint yapılandırması
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 app.Run();

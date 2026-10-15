@@ -1,0 +1,32 @@
+﻿@page
+@model BLM4581Web.Pages.KdvHesaplaModel
+@{
+    ViewData["Title"] = "KDV Hesapla";
+}
+
+<h1>KDV Hesaplama</h1>
+ 
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Tutar" class="form-label">Tutar (TL)</label>
+        <input asp-for="Tutar" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="KdvOrani" class="form-label">KDV Oranı</label>
+        <select asp-for="KdvOrani" class="form-select">
+            <option value="1">%1</option>
+            <option value="10">%10</option>
+            <option value="20">%20</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Hesapla</button>
+</form>
+@if (Model.Hesaplandi)
+{
+    <div class="alert alert-success mt-3">
+        KDV: @Model.KdvTutari.ToString("N2") TL <br />
+        Toplam: @Model.Toplam.ToString("N2") TL
+    </div>
+}
+
+

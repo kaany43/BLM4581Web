@@ -1,0 +1,46 @@
+﻿@page
+@model BLM4581Web.Pages.Kitaplar.EkleModel
+@{
+    ViewData["Title"] = "Yeni Kitap";
+}
+
+<h1>Yeni Kitap</h1>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="YeniKitap.Ad" class="form-label"></label>
+        <input asp-for="YeniKitap.Ad" class="form-control" />
+        <span asp-validation-for="YeniKitap.Ad" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="YeniKitap.Yazar" class="form-label"></label>
+        <input asp-for="YeniKitap.Yazar" class="form-control" />
+        <span asp-validation-for="YeniKitap.Yazar" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="YeniKitap.BasimYili" class="form-label"></label>
+        <input asp-for="YeniKitap.BasimYili" class="form-control" />
+        <span asp-validation-for="YeniKitap.BasimYili" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="YeniKitap.SayfaSayisi" class="form-label"></label>
+        <input asp-for="YeniKitap.SayfaSayisi" class="form-control" />
+        <span asp-validation-for="YeniKitap.SayfaSayisi" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="YeniKitap.KategoriId" class="form-label"></label>
+        <select asp-for="YeniKitap.KategoriId" asp-items="Model.Kategoriler"
+                class="form-select">
+            <option value="">-- Kategori seçiniz --</option>
+        </select>
+        <span asp-validation-for="YeniKitap.KategoriId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    <a asp-page="Index" class="btn btn-secondary">Vazgeç</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
